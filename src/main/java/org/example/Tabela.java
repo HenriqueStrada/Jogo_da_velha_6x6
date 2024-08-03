@@ -95,15 +95,36 @@ public class Tabela {
             }
         }
 
-        // Verificar Diagonais
+        // Verificar Diagonais da esquerda para a direita
         for (int i = 0; i < 3; i++) {
-            if (casas.get(i).equals(casas.get(i + 7)) && casas.get(i).equals(casas.get(i + 14)) && casas.get(i).equals(casas.get(i + 21))) {
-                return true;
-            }
-            if (casas.get(i + 5).equals(casas.get(i + 10)) && casas.get(i + 5).equals(casas.get(i + 15)) && casas.get(i + 5).equals(casas.get(i + 20))) {
-                return true;
+            for (int j = 0; j < 3; j++) {
+                int idx1 = i * 6 + j;
+                int idx2 = idx1 + 7;
+                int idx3 = idx2 + 7;
+                int idx4 = idx3 + 7;
+                if (idx4 < 36 && casas.get(idx1).equals(casas.get(idx2)) &&
+                        casas.get(idx1).equals(casas.get(idx3)) &&
+                        casas.get(idx1).equals(casas.get(idx4))) {
+                    return true;
+                }
             }
         }
+
+        // Verificar Diagonais da direita para a esquerda
+        for (int i = 0; i < 3; i++) {
+            for (int j = 3; j < 6; j++) {
+                int idx1 = i * 6 + j;
+                int idx2 = idx1 + 5;
+                int idx3 = idx2 + 5;
+                int idx4 = idx3 + 5;
+                if (idx4 < 36 && casas.get(idx1).equals(casas.get(idx2)) &&
+                        casas.get(idx1).equals(casas.get(idx3)) &&
+                        casas.get(idx1).equals(casas.get(idx4))) {
+                    return true;
+                }
+            }
+        }
+
 
         return false;
     }
